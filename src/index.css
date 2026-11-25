@@ -1,0 +1,143 @@
+@import "tailwindcss";
+
+/* ============================================================================
+   Student Registration Portal — Theme Tokens, Glassmorphism & Motion Utilities
+   Palette: Deep Royal Navy (#0B1536), Academic Purple (#5B3CE0), Crisp White
+   ============================================================================ */
+
+@theme {
+  --font-display: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-navy-950: #070E26;
+  --color-navy-900: #0B1536;
+  --color-navy-800: #13204A;
+  --color-navy-700: #1D3068;
+  --color-purple-700: #4C2EC4;
+  --color-purple-600: #5B3CE0;
+  --color-purple-500: #7255F0;
+  --color-purple-100: #EFEAFF;
+  --color-surface: #F4F6FB;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    color: #0F172A;
+    background-color: #F4F6FB;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+}
+
+/* Frosted glass card surface for main registration container */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.86);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  box-shadow:
+    0 20px 50px -18px rgba(11, 21, 54, 0.14),
+    0 4px 16px -4px rgba(91, 60, 224, 0.06);
+}
+
+.glass-nav {
+  background: rgba(11, 21, 54, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-subtle {
+  background: rgba(255, 255, 255, 0.68);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(19, 32, 74, 0.08);
+}
+
+/* Subtle floating decorative motion (compositor-only transforms) */
+@keyframes floatOrbSlow {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(18px, -22px, 0) scale(1.04);
+  }
+}
+
+@keyframes floatOrbDelayed {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-20px, 18px, 0) scale(1.05);
+  }
+}
+
+@keyframes stepFadeSlide {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes modalReveal {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 12px, 0) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+.animate-float-slow {
+  animation: floatOrbSlow 16s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: floatOrbDelayed 20s ease-in-out infinite;
+}
+
+.animate-step-enter {
+  animation: stepFadeSlide 220ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-modal-reveal {
+  animation: modalReveal 200ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Respect user motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .animate-float-slow,
+  .animate-float-delayed,
+  .animate-step-enter,
+  .animate-modal-reveal {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Clean print formatting for official registration confirmation slip */
+@media print {
+  body {
+    background: #ffffff !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-surface {
+    box-shadow: none !important;
+    border: 1px solid #cbd5e1 !important;
+    background: #ffffff !important;
+  }
+}

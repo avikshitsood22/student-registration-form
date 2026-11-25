@@ -1,0 +1,6 @@
+{
+  "name": "Student Registration Portal",
+  "description": "A modern university admission and student registration portal featuring multi-step enrollment, real-time validation, document uploads, and instant registration confirmation.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
